@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from . models import Student
 from . forms import StudentForm
+from django.views.generic import UpdateView
 
 
 # Create your views here.
@@ -20,6 +21,18 @@ def add_student(request):
 		return render(request, 'crudapp/index.html', {'students': students})
 	return render(request, 'crudapp/add_student.html', {'form':
 														form})
+
+
+class StudentUpdateView(UpdateView):
+	model = Student
+	fields = ['firstname', 'lastname', 'adm_no', 'passport']
+
+	def get_success_url(self):
+		return reverse('crudapp:index')
+
+	def form_valid(self, form):
+		return super().form_valid(form)
+
 
 
 
