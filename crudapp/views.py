@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from . models import Student
 from . forms import StudentForm
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 
 
 # Create your views here.
@@ -32,6 +32,14 @@ class StudentUpdateView(UpdateView):
 
 	def form_valid(self, form):
 		return super().form_valid(form)
+
+
+class StudentDeleteView(DeleteView):
+	model = Student
+	success_url = '/'
+
+
+
 
 
 
