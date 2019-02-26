@@ -1,10 +1,20 @@
-<form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Delete Student</legend>
-        <h4>Are you want to Delete "{{ object.firstname }}"</h4>
-    </fieldset>
-    <div class="form-group">
-        <button type="submit" class="btn btn-outline-danger">Yes, Delete</button>
+{% extends 'crudapp/base.html' %}
+{% block body %}
+    <div class="row">
+        <div class="page-header">
+            <h3 class="text-danger"><strong>Delete</strong> {{ object.firstname }}</h3>
+        </div>
     </div>
+    <div class="row">
+<form class="form-horizontal" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <h4 class="">Are you sure you want to Delete?</h4>
+        <button type="submit" class="btn btn-warning">Delete</button>
+        <a href="{% url 'crudapp:index' %}" class="btn btn-info">Cancel</a>
+    </div>
+    {% include 'crudapp/form-template.html' %}
+
 </form>
+    </div>
+{% endblock %}

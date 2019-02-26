@@ -1,6 +1,19 @@
-<form method="post" action="" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
+{% extends 'crudapp/base.html' %}
 
-    <button type="submit">Update</button>
+{% block body %}
+<div class="row">
+        <div class="page-header">
+            <h3 class="text-primary" style="padding-left: 8%;"><strong>Update</strong> {{ object.firstname }}</h3>
+        </div>
+    </div>
+    <div class="row">
+<form class="form-horizontal" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include 'crudapp/form-template.html' %}
+
+    <div class="form-group" style="padding-left: 18%;">
+    <button type="submit" class="btn btn-info">Update</button>
+    </div>
 </form>
+    </div>
+{% endblock %}
